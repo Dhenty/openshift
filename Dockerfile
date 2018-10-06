@@ -23,8 +23,7 @@ RUN set -ex && \
     chmod +x /usr/bin/v2ray/v2ctl && \
     chmod +x /usr/bin/v2ray/v2ray
 
-CMD echo -e "$CONFIG_JSON" > config.json
-COPY config.json /etc/v2ray/config.json
+CMD echo -e "$CONFIG_JSON" > /etc/v2ray/config.json
 
 ENV PATH /usr/bin/v2ray:$PATH
 
