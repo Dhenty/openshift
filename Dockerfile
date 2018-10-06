@@ -25,6 +25,8 @@ RUN set -ex && \
 
 ENV PATH /usr/bin/v2ray:$PATH
 
+ADD entrypoint.sh /entrypoint.sh
+
 RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT /entrypoint.sh 
