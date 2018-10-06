@@ -23,10 +23,10 @@ RUN set -ex && \
     chmod +x /usr/bin/v2ray/v2ctl && \
     chmod +x /usr/bin/v2ray/v2ray
 
-CMD echo -e "$CONFIG_JSON" > /etc/v2ray/config.json
-
 ENV PATH /usr/bin/v2ray:$PATH
 
-CMD ["v2ray", "-config=/etc/v2ray/config.json"]
+RUN chmod +x entrypoint.sh
+
+ENTRYPOINT  entrypoint.sh 
 
 EXPOSE 8080
