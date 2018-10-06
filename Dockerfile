@@ -8,8 +8,6 @@ RUN /tmp/go.sh
 
 FROM alpine:latest
 
-ENV CONFIG_JSON=none
-
 LABEL maintainer "Darian Raymond <admin@v2ray.com>"
 
 COPY --from=builder /usr/bin/v2ray/v2ray /usr/bin/v2ray/
