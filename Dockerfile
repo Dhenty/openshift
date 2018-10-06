@@ -16,9 +16,7 @@ COPY --from=builder /usr/bin/v2ray/v2ray /usr/bin/v2ray/
 COPY --from=builder /usr/bin/v2ray/v2ctl /usr/bin/v2ray/
 COPY --from=builder /usr/bin/v2ray/geoip.dat /usr/bin/v2ray/
 COPY --from=builder /usr/bin/v2ray/geosite.dat /usr/bin/v2ray/
-
-RUN mkdir -m 777 /etc/v2ray/ \
-  && touch /etc/v2ray/config.json
+COPY config.json /etc/v2ray/config.json
 
 RUN set -ex && \
     apk --no-cache add ca-certificates && \
@@ -28,10 +26,6 @@ RUN set -ex && \
 
 ENV PATH /usr/bin/v2ray:$PATH
 
-ADD entrypoint.sh /entrypoint.sh
-
-RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT /entrypoint.sh 
+CMD ["v2ray", "-config=/etc/v2ray/config.json"]
 
 EXPOSE 8080
